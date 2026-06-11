@@ -76,7 +76,6 @@ export default function AdminAvisos() {
     setGuardando(true)
     setMensaje('')
     try {
-      const { Timestamp } = await import('firebase/firestore')
       const datos = {
         titulo: form.titulo.trim(),
         contenido: form.contenido.trim(),
