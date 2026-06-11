@@ -10,6 +10,7 @@ import {
   deleteDoc,
   doc,
   serverTimestamp,
+  Timestamp,
 } from 'firebase/firestore'
 import { db } from '../firebase'
 
@@ -21,9 +22,11 @@ export function useFechas(soloActivos = true) {
   useEffect(() => {
     let q
     if (soloActivos) {
+      const ahora = Timestamp.now()
       q = query(
         collection(db, 'fechas'),
         where('activo', '==', true),
+        where('fecha', '>=', ahora),
         orderBy('fecha', 'asc')
       )
     } else {
